@@ -15,8 +15,8 @@ import ydzhao.weixin.tuisong.util.Pusher;
 @RestController
 public class PushController {
     //要推送的用户openid
-    private static String mxp = "odbd-6b1RhzrGEPCRT4rmmLKwpas";
-    private static String zyd = "odbd-6U6ygdSTCwldsJ6qs0kxXeA";
+    private static String wh = "oeDFM7Oq6pvmUC9zRzjlqY0aHQT8";
+    //private static String zyd = "odbd-6U6ygdSTCwldsJ6qs0kxXeA";
 
 
     /**
@@ -25,16 +25,16 @@ public class PushController {
      */
     @GetMapping("/push")
     public void push() {
-        Pusher.push(mxp);
+        Pusher.push(wh);
     }
 
     /**
      * 微信测试账号推送
      * */
-    @GetMapping("/push/zyd")
-    public void pushZyd() {
-        Pusher.push(zyd);
-    }
+//    @GetMapping("/push/zyd")
+//    public void pushZyd() {
+//        Pusher.push(zyd);
+//    }
 
 
     /**

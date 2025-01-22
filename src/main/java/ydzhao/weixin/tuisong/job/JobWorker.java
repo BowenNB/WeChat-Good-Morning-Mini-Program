@@ -13,9 +13,9 @@ import ydzhao.weixin.tuisong.util.Pusher;
 @Component
 public class JobWorker {
     //要推送的用户openid
-    private static String openId = "odbd-6b1RhzrGEPCRT4rmmLKwpas";
+    private static String openId = "oeDFM7Oq6pvmUC9zRzjlqY0aHQT8";
 
-    @Scheduled(cron = "0 30 7 * * ?")
+    @Scheduled(cron = "0 58 22 * * ?")
     public void goodMorning(){
         Pusher.push(openId);
     }
