@@ -6,6 +6,7 @@ import me.chanjar.weixin.mp.api.WxMpService;
 import me.chanjar.weixin.mp.api.impl.WxMpServiceImpl;
 import me.chanjar.weixin.mp.bean.template.WxMpTemplateData;
 import me.chanjar.weixin.mp.bean.template.WxMpTemplateMessage;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  *@ClassName Pusher
@@ -20,7 +21,7 @@ public class Pusher {
     private static String appId = "wxcca8886c594c3789";
     private static String secret = "23e092a783979c994e5c2d7739b00071";
     //模版id
-    private static String templateId = "66MmcYY-ekvuPyMrVaJEJP2CVLui7s_Yu-T-QYYbFzw";
+    private static String templateId = "NRd0WpJvgU8-Z2e4Ubirh6f7zF0eb5_TWJ-TnzFJemc";
 
     public static void push(String openId){
         //1，配置
@@ -40,14 +41,24 @@ public class Pusher {
         //                templateMessage.addData(new WxMpTemplateData(name2, value2, color2));
         //填写变量信息，比如天气之类的
         JSONObject todayWeather = Tianqi.getNanjiTianqi();
-        templateMessage.addData(new WxMpTemplateData("riqi",todayWeather.getString("date") + " "+ todayWeather.getString("week"),"#00BFFF"));
+        templateMessage.addData(new WxMpTemplateData("riqi",todayWeather.getString("date") ,"#00BFFF"));
+        templateMessage.addData(new WxMpTemplateData("city",todayWeather.getString("province") + "· "+ todayWeather.getString("city"),"#00FFFF"));
         templateMessage.addData(new WxMpTemplateData("tianqi",todayWeather.getString("date"),"#00FFFF"));
         templateMessage.addData(new WxMpTemplateData("weather",todayWeather.getString("weather") + "","#173177"));
         templateMessage.addData(new WxMpTemplateData("temperature",todayWeather.getString("temperature")+ "","#FF6347" ));
-        templateMessage.addData(new WxMpTemplateData("caihongpi",CaiHongPi.getCaiHongPi(),"#FF69B4"));
+
+        // 设置模板消息数据
+        String caihongpi = CaiHongPi.getCaiHongPi();
+        if (StringUtils.isEmpty(caihongpi)) {
+            caihongpi = "阳光落在屋里，爱你藏在心里"; // 默认值
+        }
+        templateMessage.addData(new WxMpTemplateData("caihongpi", caihongpi, "#FF69B4"));
+
         templateMessage.addData(new WxMpTemplateData("lianai",JiNianRi.getLianAi()+"","#FF1493"));
         templateMessage.addData(new WxMpTemplateData("shengri",JiNianRi.getShengRi()+"","#FFA500"));
-        templateMessage.addData(new WxMpTemplateData("jinju",CaiHongPi.getJinJu()+"","#C71585"));
+        templateMessage.addData(new WxMpTemplateData("jinju", CaiHongPi.getJinJu(), "#C71585"));
+
+        //templateMessage.addData(new WxMpTemplateData("jinju",CaiHongPi.getJinJu()+"","#C71585"));
         //templateMessage.addData(new WxMpTemplateData("jiehun",JiNianRi.getJieHun()+""));
         templateMessage.addData(new WxMpTemplateData("linzhen",JiNianRi.getLinZhen()+"","#FF6347"));
         String beizhu = "";

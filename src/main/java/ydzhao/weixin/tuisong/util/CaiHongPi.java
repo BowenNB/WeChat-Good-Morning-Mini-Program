@@ -1,5 +1,6 @@
 package ydzhao.weixin.tuisong.util;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import org.apache.commons.lang3.StringUtils;
 
@@ -22,43 +23,59 @@ public class CaiHongPi {
     private static String url = "http://api.tianapi.com/caihongpi/index?key=";
     private static List<String> jinJuList = new ArrayList<>();
     private static String name = "郑鑫";
-
+    private static final String DEFAULT_JINJU = "未来的困难，会成为你的动力。";
     public static String getCaiHongPi() {
         //默认彩虹屁
         String str = "阳光落在屋里，爱你藏在心里";
         try {
+            String apiResponse = HttpUtil.getUrl(url + key).replace("XXX", name);
+            System.out.println("API Response: " + apiResponse);
+
             JSONObject jsonObject = JSONObject.parseObject(HttpUtil.getUrl(url+key).replace("XXX", name));
-            if (jsonObject.getIntValue("code") == 200) {
-                str = jsonObject.getJSONArray("newslist").getJSONObject(0).getString("content");
+            if(jsonObject.getIntValue("code") == 200){
+                List<Object> newslist = jsonObject.getJSONArray("newslist");
+                for(Object obj : newslist){
+                    String content = ((JSONObject) obj).getString("content");
+                    if(content != null && content.length() <= 25){
+                        return content;
+                    }
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
+            str = "阳光落在屋里，爱你藏在心里";  // 确保返回默认值
         }
         return str;
     }
 
     /**
-     * 载入金句库
+     * 加载金句列表
      */
     static {
         InputStream inputStream = CaiHongPi.class.getClassLoader().getResourceAsStream("jinju.txt");
         try (BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))) {
-            String str = "";
-            String temp = "";
-            while ((temp = br.readLine()) != null) {
-                if (!StringUtils.isEmpty(temp)) {
-                    str = str + "\r\n" + temp;
-                } else {
-                    jinJuList.add(str);
-                    str = "";
+            String line;
+            while ((line = br.readLine()) != null) {
+                if (!StringUtils.isEmpty(line) && line.length() <= 25) { // 仅加载长度在 25 字以内的金句
+                    jinJuList.add(line);
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+        // 如果加载后列表为空，添加默认值
+        if (jinJuList.isEmpty()) {
+            jinJuList.add(DEFAULT_JINJU);
+        }
     }
 
+    /**
+     * 获取随机金句
+     */
     public static String getJinJu() {
+        if (jinJuList.isEmpty()) {
+            return DEFAULT_JINJU; // 确保返回默认值
+        }
         Random random = new Random();
         return jinJuList.get(random.nextInt(jinJuList.size()));
     }

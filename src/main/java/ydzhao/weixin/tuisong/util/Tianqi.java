@@ -30,6 +30,8 @@ public class Tianqi {
                     today.put("date", weatherData.getString("reporttime"));
                     today.put("weather", weatherData.getString("weather"));
                     today.put("temperature", weatherData.getString("temperature"));
+                    today.put("province", weatherData.getString("province"));
+                    today.put("city", weatherData.getString("city"));
                     today.put("winddirection", weatherData.getString("winddirection"));
                     today.put("windpower", weatherData.getString("windpower"));
                     today.put("humidity", weatherData.getString("humidity"));
