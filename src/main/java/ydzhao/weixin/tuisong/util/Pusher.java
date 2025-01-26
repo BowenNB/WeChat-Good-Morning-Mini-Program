@@ -20,7 +20,7 @@ public class Pusher {
     private static String appId = "wxcca8886c594c3789";
     private static String secret = "23e092a783979c994e5c2d7739b00071";
     //模版id
-    private static String templateId = "fXnba2m6o4aDDMtr30yyJ1zi0UwmouazbzRKhbeAV84";
+    private static String templateId = "66MmcYY-ekvuPyMrVaJEJP2CVLui7s_Yu-T-QYYbFzw";
 
     public static void push(String openId){
         //1，配置
@@ -35,15 +35,15 @@ public class Pusher {
                 .templateId(templateId)
                 //.url("https://30paotui.com/")//点击模版消息要访问的网址
                 .build();
-        //3,如果是正式版发送模版消息，这里需要配置你的信息
+        //3,如果是正式版发送模版消息，这里需要配置你的信
         //        templateMessage.addData(new WxMpTemplateData("name", "value", "#FF00FF"));
         //                templateMessage.addData(new WxMpTemplateData(name2, value2, color2));
         //填写变量信息，比如天气之类的
         JSONObject todayWeather = Tianqi.getNanjiTianqi();
-        templateMessage.addData(new WxMpTemplateData("riqi",todayWeather.getString("date") + "  "+ todayWeather.getString("week"),"#00BFFF"));
-        templateMessage.addData(new WxMpTemplateData("tianqi",todayWeather.getString("text_day"),"#00FFFF"));
-        templateMessage.addData(new WxMpTemplateData("low",todayWeather.getString("low") + "","#173177"));
-        templateMessage.addData(new WxMpTemplateData("high",todayWeather.getString("high")+ "","#FF6347" ));
+        templateMessage.addData(new WxMpTemplateData("riqi",todayWeather.getString("date") + " "+ todayWeather.getString("week"),"#00BFFF"));
+        templateMessage.addData(new WxMpTemplateData("tianqi",todayWeather.getString("date"),"#00FFFF"));
+        templateMessage.addData(new WxMpTemplateData("weather",todayWeather.getString("weather") + "","#173177"));
+        templateMessage.addData(new WxMpTemplateData("temperature",todayWeather.getString("temperature")+ "","#FF6347" ));
         templateMessage.addData(new WxMpTemplateData("caihongpi",CaiHongPi.getCaiHongPi(),"#FF69B4"));
         templateMessage.addData(new WxMpTemplateData("lianai",JiNianRi.getLianAi()+"","#FF1493"));
         templateMessage.addData(new WxMpTemplateData("shengri",JiNianRi.getShengRi()+"","#FFA500"));

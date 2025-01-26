@@ -11,13 +11,13 @@ import java.text.SimpleDateFormat;
  */
 public class JiNianRi {
     /**
-     * 恋爱
+     * 恋爱（认识）
      */
-    static String lianAi = "2018-05-21";
+    static String lianAi = "2022-07-08";
     /**
-     * 领证
+     * 领证（毕业）
      */
-    static String linZheng = "2022-03-19";
+    static String linZheng = "2025-06-01";
     /**
      * 结婚
      */
@@ -25,7 +25,7 @@ public class JiNianRi {
     /**
      * 生日
      */
-    static String shengRi = "2023-03-02";
+    static String shengRi = "2025-09-19";
 
     private static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -67,15 +67,15 @@ public class JiNianRi {
     }
 
     public static int getLinZhen() {
-        return before(linZheng);
+        return after(linZheng);
     }
 
     public static int getLianAi() {
-        return before(lianAi);
+        return after(lianAi);
     }
 
     public static int getShengRi(){
-        return after(shengRi);
+        return before(shengRi);
     }
 
     public static void main(String[] args) {
