@@ -21,7 +21,7 @@ public class Pusher {
     private static String appId = "wxcca8886c594c3789";
     private static String secret = "23e092a783979c994e5c2d7739b00071";
     //模版id
-    private static String templateId = "NRd0WpJvgU8-Z2e4Ubirh6f7zF0eb5_TWJ-TnzFJemc";
+    private static String templateId = "J8thwpP8COqoi-3Xe-9lW0jDYIcvEXChefzzDaF19sk";
 
     public static void push(String openId){
         //1，配置

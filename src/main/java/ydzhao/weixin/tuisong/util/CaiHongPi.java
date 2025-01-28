@@ -23,7 +23,7 @@ public class CaiHongPi {
     private static String url = "http://api.tianapi.com/caihongpi/index?key=";
     private static List<String> jinJuList = new ArrayList<>();
     private static String name = "郑鑫";
-    private static final String DEFAULT_JINJU = "未来的困难，会成为你的动力。";
+    private static final String DEFAULT_JINJU = "尚未缴械就是美好生活";
     public static String getCaiHongPi() {
         //默认彩虹屁
         String str = "阳光落在屋里，爱你藏在心里";
@@ -36,7 +36,7 @@ public class CaiHongPi {
                 List<Object> newslist = jsonObject.getJSONArray("newslist");
                 for(Object obj : newslist){
                     String content = ((JSONObject) obj).getString("content");
-                    if(content != null && content.length() <= 25){
+                    if(content != null && content.length() <= 19){
                         return content;
                     }
                 }
@@ -56,7 +56,7 @@ public class CaiHongPi {
         try (BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))) {
             String line;
             while ((line = br.readLine()) != null) {
-                if (!StringUtils.isEmpty(line) && line.length() <= 25) { // 仅加载长度在 25 字以内的金句
+                if (!StringUtils.isEmpty(line) && line.length() <= 19) { // 仅加载长度在 25 字以内的金句
                     jinJuList.add(line);
                 }
             }
@@ -77,7 +77,11 @@ public class CaiHongPi {
             return DEFAULT_JINJU; // 确保返回默认值
         }
         Random random = new Random();
-        return jinJuList.get(random.nextInt(jinJuList.size()));
+        String jinju;
+        do{
+            jinju = jinJuList.get(random.nextInt(jinJuList.size()));
+        }while (jinju.length() > 19);
+        return jinju;
     }
 
     public static void main(String[] args) {
