@@ -2,6 +2,9 @@
 七夕到啦，做一个程序员给女朋友的浪漫礼物吧。
 一个摸鱼的下午，简单介绍一下怎么做的吧，纯后端java，写的比较随意，仅仅达到了功能要求。
 
+- Macbook的IP地址查询：curl -4 ifconfig.me（terminal）。
+- 高德地图API：AMap_adcode_citycode.xlsx (WPS 云保存）。
+  
 所用知识点
 
 1.springboot实现java后台
