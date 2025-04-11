@@ -3,7 +3,11 @@
 一个摸鱼的下午，简单介绍一下怎么做的吧，纯后端java，写的比较随意，仅仅达到了功能要求。
 
 - Macbook的IP地址查询：curl -4 ifconfig.me（terminal）。
+- Window系统的公网IP地址查询：curl ifconfig.me
+    - 不是IPv4的局域网，因为局域网只在本地网络有效，互联网无法识别
+    - 高德服务器收到请求时，看到的只是你的路由器公网IP，而非内网设IP
 - 高德地图API：AMap_adcode_citycode.xlsx (WPS 云保存）。
+
   
 所用知识点
 
