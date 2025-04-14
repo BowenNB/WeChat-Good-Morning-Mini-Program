@@ -7,6 +7,7 @@ import me.chanjar.weixin.mp.api.impl.WxMpServiceImpl;
 import me.chanjar.weixin.mp.bean.template.WxMpTemplateData;
 import me.chanjar.weixin.mp.bean.template.WxMpTemplateMessage;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.stereotype.Component;
 
 /**
  *@ClassName Pusher
@@ -14,6 +15,7 @@ import org.apache.commons.lang3.StringUtils;
  *@Author ydzhao
  *@Date 2022/8/2 16:03
  */
+@Component
 public class Pusher {
     /**
      * 测试号的appId和secret

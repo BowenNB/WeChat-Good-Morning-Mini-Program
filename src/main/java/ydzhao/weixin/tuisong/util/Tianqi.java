@@ -7,7 +7,7 @@ public class Tianqi {
     // 高德 API 密钥
     private static String apiKey = "8f2aca1aabf33451f081292ff53d7eb3";  // 替换为你的高德 API 密钥
     // 高德的城市编码（adcode）
-    private static String cityId = "370785";  // 替换为目标城市的 adcode
+    private static String cityId = "370100";  // 替换为目标城市的 adcode 济南：370100 高密：370785
 
     public static JSONObject getNanjiTianqi() {
         String result = null;
